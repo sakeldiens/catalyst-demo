@@ -1,0 +1,21 @@
+name: sample-cid-pipleline
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up PHP
+      uses: tharwat/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, intl, json
+    - name: Install dependencies
+      run: composer install --no-progress --no-suggest --prefer-dist
+    - name: Run tests
+      run: composer test
