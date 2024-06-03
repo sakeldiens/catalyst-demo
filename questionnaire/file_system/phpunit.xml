@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd"
+   bootstrap="vendor/autoload.php"
+   colors="true"
+   failOnRisky="true"
+   failOnWarning="true"
+   cacheResultFile=".build/phpunit.cache"
+>
+   <coverage/>
+   <php>
+      <ini name="error_reporting" value="-1"/>
+      <ini name="intl.error_level" value="0"/>
+      <ini name="memory_limit" value="-1"/>
+   </php>
+   <testsuites>
+      <testsuite name="sample/fs Testing">
+         <directory suffix=".php">./tests</directory>
+      </testsuite>
+   </testsuites>
+   <source>
+      <include>
+         <directory>./src</directory>
+      </include>
+      <exclude>
+         <directory>./vendor</directory>
+      </exclude>
+   </source>
+</phpunit>
