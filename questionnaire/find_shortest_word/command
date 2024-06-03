@@ -1,0 +1,37 @@
+#!/usr/local/bin/php
+<?php
+function printShortestWords(string $filename) {
+	$file = fopen($filename, 'r');
+	if (!$file) {
+		echo "Error opening input file.";
+		exit(1);
+	}
+	
+	// Process each sentence
+	while( false !== ($sentence = fgets($file)) ) {
+		$words = preg_split('/\s+/', trim($sentence));
+		if (!empty($words)) {
+			$shortestWord = array_reduce($words, 'find_shortest_word', $words[0]);
+			echo $shortestWord . PHP_EOL;
+		}
+	}
+	fclose($file);
+}
+
+function find_shortest_word($prevWord, $currWord) {
+	if (strlen($currWord) < strlen($prevWord)) {
+		return $currWord;
+	} else {
+		return $prevWord;	
+	}
+}
+
+// Read the command line arg, fail when number of arguments passed is less that 1
+if ($argc <= 1) {
+	echo "Insufficient argumets. Please execute the script and provide a file path" . PHP_EOL;
+	echo "EXAMPLE: ./command <filename>"  . PHP_EOL;
+	exit(1);
+}
+
+printShortestWords($argv[1]);
+?>

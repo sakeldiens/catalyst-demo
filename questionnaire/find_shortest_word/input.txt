@@ -1,0 +1,6 @@
+PHP is popular general-purpose scripting language that is especially suited to web development.
+Go is an open source programming language that makes it simple to build secure, scalable systems.
+C++ is an object-oriented programming language which gives a clear structure to programs and allows code to be reused.
+HTML is the standard markup language for Web pages.
+Cascading Style Sheets is a style sheet language used for specifying the presentation and styling of a document written in a markup language such as HTML or XML.
+JavaScript is a lightweight interpreted programming language with first-class functions.
