@@ -1,9 +1,10 @@
 {
     "name": "sample/fs",
-    "description": "File System",
+    "description": "Representation of a File System",
     "type": "project",
     "require-dev": {
-        "phpunit/phpunit": "11.2.x-dev"
+        "phpunit/phpunit": "11.2.x-dev",
+        "phpbench/phpbench": "^1.2@dev"
     },
     "license": "MIT",
     "autoload": {
@@ -16,6 +17,5 @@
             "name": "Tharwat"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "dev"
 }

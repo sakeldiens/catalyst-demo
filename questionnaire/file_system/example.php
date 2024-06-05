@@ -3,41 +3,38 @@ require_once __DIR__ .'/vendor/autoload.php';
 
 use Sample\Fs\File;
 use Sample\Fs\Directory;
-use Sample\Fs\FileSystem;
 
-$fileSystem = new FileSystem();
+try {
+	// 1. Example of how to use files..
+	// ---------------------------------
 
-$file1 = new File("testfile1.txt", "Test content of file1.");
-$file2 = new File("testfile2.txt", "Test content of file2.");
+   $file = new File('./testdata/file9.txt');
 
-$directory1 = new Directory("test-directory-1");
-$directory2 = new Directory("test-directory-2");
+   if ($file->exists()) {
+		echo "File content: " . $file->read();
+   } else {
+		$file->write("Hello, World!");
+   }
 
-$directory1->addContent($file1);
-$directory2->addContent($file2);
+   $file->append("\nThis row was appended to the file.");
+   echo "File size: " . $file->size();
+   $file->delete();
 
-$fileSystem->addContentToRoot($directory1);
-$fileSystem->addContentToRoot($directory2);
+   // 2. Example of how to use directories..
+	// --------------------------------------
 
-echo "Root Contents:\n";
-$rootContents = $fileSystem->listRootContents();
-foreach ($rootContents as $contentName) {
-	echo "- $contentName" . PHP_EOL;
+   $dir = new Directory("./testdata/dir2");
+   if (!$dir->exists()) {
+		$dir->create();
+   }
+
+   $contents = $dir->listContents();
+   foreach ($contents as $item) {
+		echo $item . PHP_EOL;
+   }
+	// remove directory
+   $dir->delete();
+
+} catch (Exception $e) {
+   echo "Error: " . $e->getMessage() . PHP_EOL;
 }
-
-// Prints the contents recursively
-function printContents(array $contents, $indentCount = 0) {
-	$indent = str_repeat(' ', $indentCount * 2);
-	foreach ($contents as $name) {
-		echo $indent . htmlspecialchars($name) . PHP_EOL;
-		// echo "- $contentName\n";
-	}
-}
-
-// public function printContents($indent = 0) {
-// 	$indentation = str_repeat(' ', $indent * 2); // 2 spaces per indent
-// 	echo $indentation . "Directory: " . htmlspecialchars($this->name) . PHP_EOL;
-// 	foreach ($this->items as $item) {
-// 		 $item->printContents($indent + 1);
-// 	}
-// }
