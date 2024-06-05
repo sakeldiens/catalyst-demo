@@ -1,0 +1,10 @@
+{
+	"$schema":"./vendor/phpbench/phpbench/phpbench.schema.json",
+	"runner.php_disable_ini": true,
+	"runner.bootstrap": "vendor/autoload.php",
+	"runner.file_pattern": "*Bench.php",
+	"runner.path": "tests/benchmarks",
+	"runner.retry_threshold": 5,
+	"runner.progress": "dots",
+	"runner.time_unit": "milliseconds"
+}
